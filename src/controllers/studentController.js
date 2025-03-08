@@ -9,7 +9,7 @@ exports.loginStudent = async (req, res) => {
     if (!student)
       return res.status(400).json({ message: "Foydalanuvchi topilmadi!" });
 
-    const isMatch = bcrypt.compare(password, student.password);
+    const isMatch = await bcrypt.compare(password, student.password);
     if (!isMatch) return res.status(400).json({ message: "Parol xato!" });
 
     const token = jwt.sign(
